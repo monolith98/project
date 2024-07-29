@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="/main.css">
+</head>
+<body>
+<div th:replace="~{nav.html::navbar}"></div>
+
+<h4> LOG IN </h4>
+
+<div th:if="${param.error}">
+    <h4 style="color:red"> 아이디나 비번이 틀렸습니다.</h4>
+</div>
+
+<form action="/login" method="POST">
+    <div>
+        <input name="username" placeholder="아이디">
+        <input name="password" placeholder="password" type="password">
+        <button type="submit">전송</button>
+        <a href="register">회원가입</a>
+    </div>
+</form>
+
+<!-- 에러 메시지 표시 -->
+<div th:if="${errorMessage}" th:text="${errorMessage}" style="color: red"></div>
+
+</body>
+</html>

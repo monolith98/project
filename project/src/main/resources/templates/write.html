@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="/main.css">
+</head>
+<body>
+<div th:replace="~{nav.html::navbar}"></div>
+<form action="/add" method="POST">
+    <input name="title">
+    <input name="price">
+    <input name="username" style="display:none"  th:value="${#authentication?.principal?.username}">
+    <input name="imageUrl" style="display:none" id="imageUrlField">
+    <button type="submit">전송</button>
+</form>
+
+<input type="file" onchange="getURL(this)">
+<img src="" id="imageUrlPreview">
+<script>
+    async function getURL(e){
+      let file = e.files[0]
+      let name = encodeURIComponent(file.name)
+      let result = await fetch('/presigned-url?filename=' + name)
+      result = await result.text()
+
+      let uploadResult = await fetch(result, {
+        method: 'PUT',
+        body: e.files[0]
+      })
+
+      console.log(uploadResult.url.split("?")[0])
+      if (uploadResult.ok) {
+        let imageUrl = uploadResult.url.split("?")[0];
+        document.querySelector('#imageUrlPreview').src = imageUrl;
+        document.querySelector('#imageUrlField').value = imageUrl;
+      }
+
+    }
+</script>
+
+<!-- 에러 메시지 표시 -->
+<div th:if="${errorMessage}" th:text="${errorMessage}" style="color: red"></div>
+
+</body>
+</html>

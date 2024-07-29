@@ -1,0 +1,180 @@
+.card {
+ margin : 30px auto;
+ display : flex;
+}
+
+.card img {
+ width : 200px;
+ height : 200px;
+ margin-right : 20px;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800&display=swap');
+.nav {
+ display: flex;
+ padding: 10px;
+ align-items: center;
+ font-family : 'Montserrat';
+ justify-content:space-evenly;
+}
+
+.nav a {
+ margin-right: 10px;
+ text-decoration : none;
+ font-weight : 400;
+ letter-spacing : -0.5px;
+}
+
+.nav .logo {
+ font-weight : 800;
+}
+
+input, button {
+ padding : 8px 13px;
+ margin-top : 5px;
+ border : 1px solid grey;
+ border-radius : 4px;
+ vertical-align : middle;
+}
+
+button {
+ background : black;
+ color : white;
+ border : none;
+}
+
+input {
+ display : block;
+}
+
+.detail {
+ display : flex;
+ flex-direction : row;
+ justify-content: center;
+ align-items : stretch;
+}
+
+.detail itemImage{
+ margin : 30px auto;
+ display : flex;
+}
+
+#itemImage img {
+ width : 200px;
+ height : 200px;
+ margin-right : 20px;
+}
+
+.comment{
+    margin:3px;
+    align-items: center;
+}
+
+.comment h4{
+    margin:3px;
+}
+
+#content{
+    box-size:100px;
+}
+
+.commentForm{
+  display : inline-flex;
+  flex-direction : row;
+  justify-content: center;
+  align-items : stretch;
+}
+
+
+
+.commentSubmit{
+    display:inline-flex;
+}
+
+.commentBlock{
+  display : flex;
+  flex-direction : column;
+  justify-content: center;
+  align-items : stretch;
+  padding:10px;
+}
+
+.commentContent{
+    display : flex;
+    justify-content: center;
+    border : 2px solid black
+}
+
+.commentUser{
+    display : flex;
+    justify-content: right;
+}
+
+
+/*
+.detail img{
+ max-width : 30%;
+ display : flex;
+ margin : auto;
+}
+*/
+
+.delete{
+    background : white;
+}
+
+.page_wrap {
+	text-align:center;
+	font-size:0;
+ }
+.page_nation {
+	display:inline-block;
+}
+.page_nation .none {
+	display:none;
+}
+.page_nation a {
+	display:block;
+	margin:0 3px;
+	float:left;
+	border:1px solid #e6e6e6;
+	width:28px;
+	height:28px;
+	line-height:28px;
+	text-align:center;
+	background-color:#fff;
+	font-size:13px;
+	color:#999999;
+	text-decoration:none;
+}
+.page_nation .arrow {
+	border:1px solid #ccc;
+}
+.page_nation .pprev {
+	margin-left:0;
+}
+.page_nation .prev {
+	margin-right:7px;
+}
+.page_nation .next {
+	margin-left:7px;
+}
+.page_nation .nnext {
+	margin-right:0;
+}
+.page_nation a.active {
+	background-color:#42454c;
+	color:#fff;
+	border:1px solid #42454c;
+}
+
+.disabled {
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+.active {
+    font-weight: bold;
+}
+
+

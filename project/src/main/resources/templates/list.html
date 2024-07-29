@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="/main.css">
+</head>
+<body>
+
+    <div th:replace="~{nav.html::navbar}"></div>
+
+
+    <div class = "card" th:each="item : ${items}">
+
+            <img th:src="${item.imageUrl != null ? item.imageUrl : 'https://placehold.co/300'}" id="ItemImage">
+            <div>
+                <a th:href="@{'/detail/' + ${item.id}}">
+                    <h4 th:text="${item.title}"></h4>
+                </a>
+                <p th:text="${item.price + '원'}"></p>
+
+            </div>
+
+    </div>
+
+    <div class="page_wrap">
+        <div class="page_nation">
+            <a th:href="@{/list/page/1}" class="arrow pprev" th:classappend="${currentPage == 1} ? 'disabled' : ''"><<</a>
+            <a th:href="@{/list/page/__${currentPage-1}__}" class="arrow prev" th:classappend="${currentPage == 1} ? 'disabled' : ''"><</a>
+
+            <span th:each="page : ${#numbers.sequence(1, totalPages)}">
+                <a th:href="@{/list/page/__${page}__}" th:text="${page}" th:class="${page == currentPage} ? 'active' : ''"></a>
+            </span>
+
+            <a th:href="@{/list/page/__${currentPage+1}__}" class="arrow next" th:classappend="${currentPage == totalPages} ? 'disabled' : ''">></a>
+            <a th:href="@{/list/page/__${totalPages}__}" class="arrow nnext" th:classappend="${currentPage == totalPages} ? 'disabled' : ''">>></a>
+        </div>
+    </div>
+
+    <button class="btn">버튼</button>
+
+    <!-- 이 URL로 GET 요청을 날려준다 / html 파일 로드 시 1회 실행 -->
+<script>
+    document.querySelectorAll('.btn')[0].addEventListener('click',function(){
+        fetch('/test1',{
+            method : 'POST',
+            headers : {'Content-Type' : 'application/json'},
+            body : JSON.stringify({name:'kim'})
+        })
+    })
+</script>
+</body>
+</html>

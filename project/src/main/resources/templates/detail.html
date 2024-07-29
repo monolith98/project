@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="/main.css">
+</head>
+<body>
+
+    <div th:replace="~{nav.html::navbar}"></div>
+    <h4 style="text-align:center">상세페이지</h4>
+
+    <div class="detail">
+
+        <div id="itemImage">
+            <img th:src="${item.imageUrl != null ? item.imageUrl : 'https://placehold.co/300'}">
+        </div>
+
+        <div id="itemInfo">
+            <h4 th:text="${item.getTitle()}"></h4>
+            <h4 th:text="${item.getMember}"></h4>
+            <p th:text="${item.getPrice+'원'}"></p>
+            <!-- id 값 보내기 -->
+            <a href="#" th:href="@{edit/{id} (id=${item.id})}">✏️</a>
+        </div>
+
+    </div>
+    <div class="comment">
+        <h4 >댓글</h4>
+        <form class="commentForm" action="/comment" method="post" >
+            <input name="content" id="content">
+            <input name="parent" th:value="${item.id}" style="display:none">
+            <div>
+                <button class="commentSubmit">입력</button>
+            </div>
+
+        </form>
+
+    </div>
+
+    <div class="commentBlock" th:each="comment:${comment}">
+        <div class="commentContent" th:text="${comment.content}"></div>
+        <div class="commentUser" th:text="${'작성자 : ' + comment.username}"></div>
+    </div>
+
+
+
+</body>
+</html>

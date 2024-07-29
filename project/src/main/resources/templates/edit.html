@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Edit</title>
+    <link rel="stylesheet" href="/main.css">
+</head>
+<body>
+<div th:replace="~{nav.html::navbar}"></div>
+<form action="#" th:action="@{/detail/edit/{id} (id=${item.id})}" method="POST">
+    <input type="hidden" name="id" th:field="${item.id}" style="display=none">
+    <!-- ID를 위한 숨은 입력 추가 -->
+    <label>Title: </label><input name="title" th:field="${item.title}">
+    <!-- 에러 메시지 표시 -->
+    <div th:if="${errorMessage}" th:text="${errorMessage}" style="color: red"></div>
+    <label>Price: </label><input name="price" th:field="${item.price}">
+    <button type="submit">수정</button>
+
+    <span th:onclick="fetch('/item?id=[[${item.id}]]', {method : 'DELETE'})
+                .then(r => r.text())
+                .then(()=>{
+                    window.location.href = '/list/page/1';
+                })
+    ">🗑️</span>
+
+</form>
+
+
+
+</body>
+</html>
